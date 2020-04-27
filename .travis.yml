@@ -1,0 +1,19 @@
+sudo: false
+language: node_js
+node_js:
+  - "5.6"
+before_install:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+script:
+  - npm run lint && npm test
+env:
+  - CXX=g++-4.8 NODE_ENV=test
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - xvfb
+      - g++-4.8
+      - libgnome-keyring-dev
